@@ -9,22 +9,27 @@ namespace BookStore
    public  class Author
     {
         string Name { get; set; }
-        Book[] Books { get; set; }
+         Book[] Books { get; set; }
         string Email { get; set; }
         Date DOB { get; set; }
         char Gender { get; set; }
 
-      public  Author(string name, string email, char gender)
+      public  Author(string name, string email, char gender, Date DOB)
         {
             this.Name = name;
             this.Email = email;
             this.Gender = gender;
+            this.DOB = DOB;
         }
         public Author(string name, string email, char gender,Book[] books)
         {
             this.Name = name;
             this.Email = email;
             this.Gender = gender;
+            this.Books = books;
+        }
+        public void SetBooks(Book[] books)
+        {
             this.Books = books;
         }
         public string GetName() {

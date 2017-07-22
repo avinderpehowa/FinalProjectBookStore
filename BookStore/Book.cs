@@ -9,20 +9,21 @@ namespace BookStore
     public class Book
     {
         string Name { get; set; }
-        Author[] Authors { get; set; }
-        double  Price { get; set; }
+        Author[] authors { get; set; }
+        double  price { get; set; }
         int qty { get; set; }
+        Date publication { get; set; }
 
         public Book(string name, Author[] authors,double price) {
            this.Name = name;
-            this.Authors = authors;
-            this.Price = price;
+            this.authors = authors;
+            this.price = price;
         }
         public Book(string name, Author[] authors, double price,int qty)
         {
             this.Name = name;
-            this.Authors = authors;
-            this.Price = price;
+            this.authors = authors;
+            this.price = price;
             this.qty = qty;
         }
 
@@ -32,7 +33,55 @@ namespace BookStore
         }
         public Author[] GetAuthors()
         {
-            return this.Authors;
+            return this.authors;
+        }
+        public Date GetPublicationDate()
+        {
+            return this.publication;
+        }
+        public void SetPublicationDate(Date date)
+        {
+            this.publication = date;
+        }
+        public double GetPrice()
+        {
+            return this.price;
+        }
+        public void SetPrice(double price)
+        {
+            this.price = price;
+        }
+        public int GetQty()
+        {
+            return qty;
+        }
+        public void SetQty(int qty)
+        {
+            this.qty = qty;
+        }
+        public string ToString()
+        {
+            string output = "\nName              : " + this.GetName() + "\nPrice             : " + this.GetPrice();
+            Date pubDate = this.GetPublicationDate();
+            output= output+"\nPublication Date  : " + pubDate.ToString()+ "   (dd/mm/yyyy)";
+            output = output + "\nAuthors           : " + this.GetAuthorNames();
+            return output;
+        }
+        public string GetAuthorNames()
+        {
+            string authName = "";
+            for (int i = 0; i < this.authors.Length; i++)
+            {
+                if (i == 0)
+                {
+                    authName += this.authors[i].GetName();
+                }
+                else {
+
+                    authName += ","+this.authors[i].GetName();
+                }
+            }
+            return authName;
         }
     }
 }

@@ -11,6 +11,11 @@ namespace BookStore
         List<Author> favoriteAuthors { get; set; }
         List<Book> ShoppingCart { get; set; }
 
+        public User()
+        {
+            favoriteAuthors = new List<Author>();
+            ShoppingCart = new List<Book>();
+        }
         public void AddAuthor(Author author)
         {
             favoriteAuthors.Add(author);
@@ -19,10 +24,10 @@ namespace BookStore
         {
             return favoriteAuthors.ToArray();
         }
-        //public Book[] GetShoppingCart()
-        //{
-        //    return ShoppingCart.ToArray();
-        //}
+        public Book[] GetShoppingCartBooks()
+        {
+            return ShoppingCart.ToArray();
+        }
         public void AddToCart(Book book) {
             ShoppingCart.Add(book);
         }
@@ -34,14 +39,10 @@ namespace BookStore
         {
             ShoppingCart.Remove(book);
         }
-        public string GetShoppingCart()
+        public List<Book> GetShoppingCart()
         {
-            StringBuilder cart = new StringBuilder();
-            cart.Append("Cart Items:");
-            foreach (var item in ShoppingCart) {
-                cart.AppendLine("\t" + item.GetName());
-            }
-            return cart.ToString();
+           
+            return this.ShoppingCart;
         }
     }
 }
