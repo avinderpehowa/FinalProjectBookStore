@@ -264,27 +264,38 @@ namespace BookStore
                 Console.WriteLine("-----------------------------------------------------------------");
                 sno++;
             }
-            Console.WriteLine("To View Author Details and Books");
-            Console.Write("Enter Author Id : ");
+            Console.WriteLine("To View Author Details and Books Enter Author Id or ");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("'Press 0 to go back on main menu'");
+            Console.ResetColor();
+          //  Console.Write("Enter Author Id : ");
             int authId = Convert.ToInt32(Console.ReadLine());
-            Author auth = authors[--authId];
-            Console.WriteLine("\nName : " + auth.GetName());
-            Console.WriteLine("DOB : " + auth.GetDOB().ToString());
-            Console.WriteLine("Gender : " + auth.GetGender());
-            Console.WriteLine("Email : " + auth.GetEmail());
-
-            Console.WriteLine("\n---------------------------Books---------------------------------");
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-
-            Console.WriteLine("\n-----------------------------------------------------------------");
-            Console.Write(" \t\t\t AUTHOR : " + auth.GetName() + "\t\t\t\t ");
-            List<Book> authBooks = new List<Book>();
-            for (int i = 0; i < auth.GetBooks().Length; i++)
+            if (authId == 0)
             {
-                authBooks.Add(auth.GetBooks()[i]);
-            }            
-            ViewBooks(authBooks);
+                Console.Clear();
+                ShowMenu();
+                SelectOption();
+            }
+            else {
+                Author auth = authors[--authId];
+                Console.WriteLine("\nName : " + auth.GetName());
+                Console.WriteLine("DOB : " + auth.GetDOB().ToString());
+                Console.WriteLine("Gender : " + auth.GetGender());
+                Console.WriteLine("Email : " + auth.GetEmail());
+
+                Console.WriteLine("\n---------------------------Books---------------------------------");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+
+                Console.WriteLine("\n-----------------------------------------------------------------");
+                Console.Write(" \t\t\t AUTHOR : " + auth.GetName() + "\t\t\t\t ");
+                List<Book> authBooks = new List<Book>();
+                for (int i = 0; i < auth.GetBooks().Length; i++)
+                {
+                    authBooks.Add(auth.GetBooks()[i]);
+                }
+                ViewBooks(authBooks);
+            }
         }
         public void ShowShoppingCart()
         {
