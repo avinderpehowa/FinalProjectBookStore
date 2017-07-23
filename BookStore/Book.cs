@@ -61,7 +61,11 @@ namespace BookStore
         }
         public string ToString()
         {
-            string output = "\nName              : " + this.GetName() + "\nPrice             : " + this.GetPrice();
+            string output;
+            if (Convert.ToInt32(this.GetPrice())==0)
+             output = "\nName              : " + this.GetName() + "\nPrice             : " + "Free";
+            else
+             output = "\nName              : " + this.GetName() + "\nPrice             : " + this.GetPrice();
             Date pubDate = this.GetPublicationDate();
             output= output+"\nPublication Date  : " + pubDate.ToString()+ "   (dd/mm/yyyy)";
             output = output + "\nAuthors           : " + this.GetAuthorNames();

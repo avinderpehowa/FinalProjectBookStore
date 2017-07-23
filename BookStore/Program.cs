@@ -58,10 +58,10 @@ namespace BookStore
             #region Adding books
             books = new List<Book>();
 
-            Book book1 = new Book("book1", new Author[] { author1, author2 }, 1.4, 5);
+            Book book1 = new Book("book1", new Author[] { author1, author2 }, 0, 5);
             book1.SetPublicationDate(new Date(10, 1, 2004));
             books.Add(book1);
-            Book book2 = new Book("book2", new Author[] { author3, author2 }, 5.0, 5);
+            Book book2 = new Book("book2", new Author[] { author3, author2 },0, 5);
             book2.SetPublicationDate(new Date(22, 4, 1994));
             books.Add(book2);
             Book book3 = new Book("book3", new Author[] { author4, author2 }, 3.4, 5);
@@ -188,6 +188,9 @@ namespace BookStore
             Console.ForegroundColor = ConsoleColor.White;
             foreach (Book bookItem in books)
             {
+                if(Convert.ToInt32(bookItem.GetPrice())==0)
+                Console.WriteLine(" " + sno + "\t" + "Free" + "\t\t" + bookItem.GetName());
+                else
                 Console.WriteLine(" " + sno + "\t" + bookItem.GetPrice() + "\t\t" + bookItem.GetName());
                 Console.WriteLine("-----------------------------------------------------------------");
                 sno++;
@@ -315,7 +318,13 @@ namespace BookStore
         foreach (Book cart in AllCartItems)
         {
             totalAmt += cart.GetQty() * cart.GetPrice();
-            Console.WriteLine("" + id + "\t" + cart.GetQty() + "\t" + cart.GetPrice() + "\t" + cart.GetQty() * cart.GetPrice() + "\t\t" + cart.GetName());
+                if (Convert.ToInt32(cart.GetPrice()) == 0)
+                {
+
+                    Console.WriteLine("" + id + "\t" + cart.GetQty() + "\t" +"Free" + "\t" + cart.GetQty() * cart.GetPrice() + "\t\t" + cart.GetName());
+                }
+                else
+                    Console.WriteLine("" + id + "\t" + cart.GetQty() + "\t" + cart.GetPrice() + "\t" + cart.GetQty() * cart.GetPrice() + "\t\t" + cart.GetName());
             Console.WriteLine("-----------------------------------------------------------------");
             Console.ResetColor();
             id++;
@@ -342,6 +351,10 @@ namespace BookStore
             Book item = cartItems[--idx];
             Console.WriteLine("ItemId\tQty\tPrice\tTotalPrice\tName\t\t\t ");
             Console.WriteLine("-----------------------------------------------------------------");
+                if (Convert.ToInt32(item.GetPrice()) == 0)
+                {
+                    Console.WriteLine("" + itemId + "\t" + item.GetQty() + "\t" + "Free" + "\t" + "Free" + "\t\t" + item.GetName());
+                }else
             Console.WriteLine("" + itemId + "\t" + item.GetQty() + "\t" + item.GetPrice() + "\t" + item.GetQty() * item.GetPrice() + "\t\t" + item.GetName());
             Console.WriteLine("-----------------------------------------------------------------");
             int newQty = 0;
